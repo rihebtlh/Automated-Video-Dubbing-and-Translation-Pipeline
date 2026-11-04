@@ -1,7 +1,6 @@
 # Automated-Video-Dubbing-and-Translation-Pipeline
 🎬 Automated Video Dubbing & Translation Pipeline
 
-Traitement de la Parole (TP) – 2026
 
 📌 Overview
 
