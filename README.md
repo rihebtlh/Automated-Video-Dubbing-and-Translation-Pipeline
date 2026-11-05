@@ -4,7 +4,7 @@
 
 📌 Overview
 
- AI-powered pipeline that automates video transcription, translation, and dubbing using open-weight models. The project transforms a video into a multilingual version while preserving subtitle timestamps and synchronizing generated speech with the original video.
+An AI-powered pipeline that automates video transcription, translation, and dubbing using open-weight models. The project transforms a video into a multilingual version while preserving subtitle timestamps and synchronizing generated speech with the original video.
 
 The entire pipeline is designed to run locally using open-source tools and models, without relying on commercial AI APIs.
 
