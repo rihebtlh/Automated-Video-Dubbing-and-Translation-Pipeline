@@ -1,168 +1,157 @@
-# Automated-Video-Dubbing-and-Translation-Pipeline
-🎬 Automated Video Dubbing & Translation Pipeline
+# 🎬 Automated Video Dubbing & Translation Pipeline
 
+End-to-end pipeline that automatically transcribes, translates and dubs videos into another language, using open-weight speech recognition, machine translation and text-to-speech models.
 
-📌 Overview
+![Python](https://img.shields.io/badge/Python-3.x-blue)
+![Google Colab](https://img.shields.io/badge/Runtime-Google%20Colab%20GPU-orange)
+![Open-weight models](https://img.shields.io/badge/Models-open--weight%20only-green)
 
-An AI-powered pipeline that automates video transcription, translation, and dubbing using open-weight models. The project transforms a video into a multilingual version while preserving subtitle timestamps and synchronizing generated speech with the original video.
+---
 
-The entire pipeline is designed to run locally using open-source tools and models, without relying on commercial AI APIs.
+## 📌 Overview
 
-🎯 Objectives
+An AI-powered pipeline that turns a video into a multilingual version. It preserves subtitle timestamps and synchronizes the generated speech with the original video.
 
-Extract audio from YouTube videos.
+Everything relies on open-source tools and open-weight models, with **no commercial AI APIs**. Processing is done on a Google Colab GPU runtime.
 
-Transcribe speech and generate accurate, timestamped subtitles.
+## 🎯 Objectives
 
-Translate subtitles into a target language while preserving timestamps.
+- Extract audio from YouTube videos
+- Transcribe speech and generate accurate, timestamped subtitles
+- Translate subtitles into a target language while preserving timestamps
+- Generate dubbed speech using Text-to-Speech (TTS)
+- Synchronize the translated audio with the original video
+- Mix original and generated audio using audio ducking
+- Embed translated subtitles into the final video
+- Deploy the pipeline as an interactive web application
 
-Generate dubbed speech using Text-to-Speech (TTS).
+## ⚙️ Pipeline Architecture
 
-Synchronize translated audio with the original video.
+```
+YouTube video
+     │
+     ▼
+┌──────────────────────────┐
+│ 1. Extraction & ASR      │  yt-dlp → FFmpeg → ASR → forced alignment → .srt / .vtt
+└──────────┬───────────────┘
+           ▼
+┌──────────────────────────┐
+│ 2. Subtitle translation  │  lightweight open-weight LLM (< 2B params)
+└──────────┬───────────────┘
+           ▼
+┌──────────────────────────┐
+│ 3. Speech generation     │  Hugging Face TTS, per segment, duration/speed adjustment
+└──────────┬───────────────┘
+           ▼
+┌──────────────────────────┐
+│ 4. Mixing & integration  │  sync + audio ducking + embedded subtitles → final video
+└──────────┬───────────────┘
+           ▼
+┌──────────────────────────┐
+│ 5. Deployment            │  Gradio / Streamlit, Docker, Hugging Face Spaces
+└──────────────────────────┘
+```
 
-Mix original and generated audio using audio ducking.
+### 1. Audio Extraction & Transcription
+- Video downloading with `yt-dlp`
+- Audio extraction using `FFmpeg`
+- Automatic Speech Recognition (ASR)
+- Forced alignment for precise timestamps
+- Subtitle generation (`.srt` / `.vtt`)
 
-Embed translated subtitles into the final video.
+### 2. Subtitle Translation
+- Lightweight open-weight LLM (under 2B parameters)
+- Translation with timestamp preservation
+- Prompt engineering and output validation
 
-Deploy the pipeline as an interactive web application.
+### 3. Speech Generation
+- Text-to-Speech using Hugging Face models
+- Segment-based speech generation
+- Duration and speed adjustment
+- Optional voice cloning
 
-⚙️ Pipeline Architecture
+### 4. Audio Mixing & Video Integration
+- Speech and video synchronization
+- Audio ducking (90% dubbed audio / 10% original audio during speech)
+- Subtitle embedding
+- Final video rendering
 
-Audio Extraction & Transcription
+### 5. Deployment
+- Interactive interface with Gradio or Streamlit
+- Docker containerization
+- Deployment on Hugging Face Spaces
 
-Video downloading with yt-dlp.
+## 🛠️ Technologies
 
-Audio extraction using FFmpeg.
+| Category | Tools |
+|---|---|
+| Programming | Python |
+| Environment | Google Colab (GPU) |
+| Speech recognition | Hugging Face ASR |
+| Forced alignment | Alignment models |
+| Translation | Lightweight open-weight LLMs |
+| Speech synthesis | Hugging Face TTS |
+| Audio / video | FFmpeg, yt-dlp |
+| Interface | Gradio / Streamlit |
+| Deployment | Docker, Hugging Face Spaces |
+| Version control | Git, GitHub |
 
-Automatic Speech Recognition (ASR).
+## 🚀 Expected Output
 
-Forced alignment for precise timestamps.
+A final dubbed video containing:
 
-Subtitle generation (.srt / .vtt).
+- Translated speech synchronized with the original video
+- Embedded translated subtitles
+- Original background audio preserved through audio ducking
 
-Subtitle Translation
+## ▶️ Getting Started
 
-Lightweight open-weight LLM (under 2B parameters).
+1. Open `Projet_Traitement_Parole.ipynb` in Google Colab.
+2. Select a GPU runtime (**Runtime → Change runtime type → GPU**).
+3. Run the cells in order: download, transcription, translation, speech generation, then mixing and rendering.
 
-Translation with timestamp preservation.
+## 📂 Project Structure
 
-Prompt engineering and output validation.
+**Current:**
 
-Speech Generation
+```
+.
+├── Projet_Traitement_Parole.ipynb   # Full pipeline notebook
+└── README.md
+```
 
-Text-to-Speech using Hugging Face models.
+**Planned:**
 
-Segment-based speech generation.
-
-Duration and speed adjustment.
-
-Optional voice cloning.
-
-Audio Mixing & Video Integration
-
-Speech and video synchronization.
-
-Audio ducking (90% dubbed audio / 10% original audio during speech).
-
-Subtitle embedding.
-
-Final video rendering.
-
-Deployment
-
-Interactive interface with Gradio or Streamlit.
-
-Docker containerization.
-
-Deployment on Hugging Face Spaces.
-
-🛠️ Technologies
-
-Category
-
-Tools
-
-Programming
-
-Python
-
-Environment
-
-Google Colab (GPU)
-
-Speech Recognition
-
-Hugging Face ASR
-
-Forced Alignment
-
-Alignment models
-
-Translation
-
-Lightweight LLMs
-
-Speech Synthesis
-
-Hugging Face TTS
-
-Audio/Video
-
-FFmpeg, yt-dlp
-
-Interface
-
-Gradio / Streamlit
-
-Deployment
-
-Docker, Hugging Face Spaces
-
-Version Control
-
-Git, GitHub
-
-📂 Project Structure
-
-automated-video-dubbing/
-│
-├── notebooks/
-│   └── video_dubbing_pipeline.ipynb
-│
+```
+.
 ├── src/
 │   ├── audio_extraction.py
 │   ├── transcription.py
 │   ├── translation.py
 │   ├── speech_generation.py
 │   └── video_integration.py
-│
 ├── outputs/
-├── app.py
+├── app.py                           # Gradio / Streamlit interface
 ├── requirements.txt
 ├── Dockerfile
-├── README.md
 └── .gitignore
+```
 
-🚀 Expected Output
+## ✅ Project Status
 
-A final dubbed video containing:
+- [x] Pipeline prototype in a Colab notebook
+- [ ] Refactor notebook into modules (`src/`)
+- [ ] Web interface (Gradio / Streamlit)
+- [ ] Docker containerization
+- [ ] Deployment on Hugging Face Spaces
 
-Translated speech synchronized with the original video.
+## 📌 Project Constraints
 
-Embedded translated subtitles.
+- No commercial or closed-source AI APIs
+- Only open-weight models
+- Models must be compatible with limited GPU memory
+- Processing is performed on the Google Colab GPU runtime
 
-Original background audio preserved through audio ducking.
+## 👩‍💻 Academic Context
 
-📌 Project Constraints
-
-No commercial or closed-source AI APIs.
-
-Only open-weight models.
-
-Models must be compatible with limited GPU memory.
-
-Processing is performed using Google Colab GPU runtime.
-
-👩‍💻 Academic Context
-
-Developed as part of the Traitement de la Parole (TP) – 2026 coursework.
+Developed as part of the *Traitement de la Parole* (TP) coursework, 2026, at USTO-MB.
