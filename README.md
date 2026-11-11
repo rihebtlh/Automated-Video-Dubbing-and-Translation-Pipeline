@@ -1,4 +1,4 @@
-# 🎬 Automated Video Dubbing & Translation Pipeline
+# Automated Video Dubbing & Translation Pipeline
 
 End-to-end pipeline that automatically transcribes, translates and dubs videos into another language, using open-weight speech recognition, machine translation and text-to-speech models.
 
@@ -8,13 +8,13 @@ End-to-end pipeline that automatically transcribes, translates and dubs videos i
 
 ---
 
-## 📌 Overview
+## Overview
 
 An AI-powered pipeline that turns a video into a multilingual version. It preserves subtitle timestamps and synchronizes the generated speech with the original video.
 
 Everything relies on open-source tools and open-weight models, with **no commercial AI APIs**. Processing is done on a Google Colab GPU runtime.
 
-## 🎯 Objectives
+## Objectives
 
 - Extract audio from YouTube videos
 - Transcribe speech and generate accurate, timestamped subtitles
@@ -25,7 +25,7 @@ Everything relies on open-source tools and open-weight models, with **no commerc
 - Embed translated subtitles into the final video
 - Deploy the pipeline as an interactive web application
 
-## ⚙️ Pipeline Architecture
+## Pipeline Architecture
 
 ```
 YouTube video
@@ -81,7 +81,7 @@ YouTube video
 - Docker containerization
 - Deployment on Hugging Face Spaces
 
-## 🛠️ Technologies
+## Technologies
 
 | Category | Tools |
 |---|---|
@@ -96,7 +96,7 @@ YouTube video
 | Deployment | Docker, Hugging Face Spaces |
 | Version control | Git, GitHub |
 
-## 🚀 Expected Output
+## Expected Output
 
 A final dubbed video containing:
 
@@ -104,13 +104,13 @@ A final dubbed video containing:
 - Embedded translated subtitles
 - Original background audio preserved through audio ducking
 
-## ▶️ Getting Started
+## Getting Started
 
 1. Open `Projet_Traitement_Parole.ipynb` in Google Colab.
 2. Select a GPU runtime (**Runtime → Change runtime type → GPU**).
 3. Run the cells in order: download, transcription, translation, speech generation, then mixing and rendering.
 
-## 📂 Project Structure
+## Project Structure
 
 **Current:**
 
@@ -137,7 +137,7 @@ A final dubbed video containing:
 └── .gitignore
 ```
 
-## ✅ Project Status
+## Project Status
 
 - [x] Pipeline prototype in a Colab notebook
 - [ ] Refactor notebook into modules (`src/`)
@@ -145,13 +145,13 @@ A final dubbed video containing:
 - [ ] Docker containerization
 - [ ] Deployment on Hugging Face Spaces
 
-## 📌 Project Constraints
+## Project Constraints
 
 - No commercial or closed-source AI APIs
 - Only open-weight models
 - Models must be compatible with limited GPU memory
 - Processing is performed on the Google Colab GPU runtime
 
-## 👩‍💻 Academic Context
+## Academic Context
 
 Developed as part of the *Traitement de la Parole* (TP) coursework, 2026, at USTO-MB.
